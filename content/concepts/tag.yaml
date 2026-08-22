@@ -1,0 +1,40 @@
+id: tag
+canonical_name: Tag
+slug: tag
+status: pilot
+interactive: false
+
+category:
+  primary: ui-components
+  secondary: status-indicators
+  tertiary: tags
+
+short_definition: Élément compact servant principalement à classifier ou décrire un contenu.
+definition: >
+  Un Tag est principalement un marqueur descriptif ou classificatoire associé à un
+  contenu afin d'en préciser le sujet, la catégorie ou les attributs.
+purpose: Aider à comprendre ou organiser un contenu grâce à une classification visible.
+use_when: []
+avoid_when: []
+variants: []
+states: []
+relationships:
+  parent: []
+  commonly_confused_with: []
+  alternatives_to: []
+  related_patterns: []
+visuals:
+  isolated: null
+sources: []
+search:
+  keywords:
+    - tag
+    - label
+    - classification
+  natural_language_queries: []
+  tags:
+    - description
+    - content
+ai:
+  short_prompt: ''
+  detailed_prompt: ''

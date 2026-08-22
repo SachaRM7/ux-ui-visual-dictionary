@@ -1,0 +1,41 @@
+id: badge
+canonical_name: Badge
+slug: badge
+status: pilot
+interactive: false
+
+category:
+  primary: ui-components
+  secondary: status-indicators
+  tertiary: badges
+
+short_definition: Élément compact présentant une information, un état ou un compteur.
+definition: >
+  Un Badge est principalement un indicateur visuel associé à un élément de l'interface
+  pour communiquer une information, un état ou une quantité.
+purpose: Communiquer rapidement une information secondaire sans constituer le contrôle principal.
+use_when: []
+avoid_when: []
+variants: []
+states: []
+relationships:
+  parent: []
+  commonly_confused_with: []
+  alternatives_to: []
+  related_patterns: []
+visuals:
+  isolated: null
+sources: []
+search:
+  keywords:
+    - badge
+    - status indicator
+    - counter
+  natural_language_queries: []
+  tags:
+    - information
+    - status
+    - count
+ai:
+  short_prompt: ''
+  detailed_prompt: ''

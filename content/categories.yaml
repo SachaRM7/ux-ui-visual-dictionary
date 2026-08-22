@@ -1,0 +1,16 @@
+primary:
+  - id: ui-components
+    label: UI Components
+    secondary:
+      - id: selection-controls
+        label: Selection Controls
+        tertiary:
+          - id: chips
+            label: Chips
+      - id: status-indicators
+        label: Status Indicators
+        tertiary:
+          - id: badges
+            label: Badges
+          - id: tags
+            label: Tags

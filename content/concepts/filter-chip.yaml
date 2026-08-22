@@ -1,0 +1,185 @@
+id: filter-chip
+canonical_name: Filter Chip
+slug: filter-chip
+status: pilot
+interactive: true
+
+aliases: []
+alternative_names:
+  - Filter Pill
+
+category:
+  primary: ui-components
+  secondary: selection-controls
+  tertiary: chips
+
+short_definition: Contrôle interactif compact permettant d'activer ou désactiver un critère de filtrage.
+definition: >
+  Un Filter Chip expose directement un critère de filtrage afin que l'utilisateur
+  puisse modifier rapidement les résultats sans ouvrir systématiquement un panneau
+  de filtres complet.
+purpose: >
+  Permettre un filtrage rapide tout en gardant visibles les critères les plus
+  importants ou les plus fréquemment utilisés.
+user_goal: >
+  Affiner rapidement une liste ou un ensemble de résultats selon un ou plusieurs critères.
+problem_solved: >
+  Éviter d'obliger l'utilisateur à ouvrir un panneau de filtres complexe pour accéder
+  aux critères les plus fréquents.
+
+use_when:
+  - Les filtres principaux sont fréquemment utilisés.
+  - Les critères doivent rester visibles.
+  - Les labels sont courts.
+  - L'utilisateur doit pouvoir activer rapidement plusieurs critères.
+  - L'état actuel du filtrage doit rester perceptible.
+avoid_when:
+  - Le nombre de filtres est très élevé.
+  - Les critères nécessitent de longues descriptions.
+  - Les filtres possèdent plusieurs niveaux hiérarchiques.
+  - L'utilisateur doit saisir une valeur complexe.
+  - La densité de Filter Chips rend l'interface difficile à scanner.
+
+variants:
+  - id: text-only
+    name: Text Only
+    description: Filter Chip composé uniquement d'un label.
+  - id: leading-icon
+    name: Leading Icon
+    description: Filter Chip comprenant une icône avant le label.
+  - id: selected-indicator
+    name: Selected Indicator
+    description: Filter Chip affichant un indicateur explicite lorsqu'il est sélectionné.
+  - id: filled
+    name: Filled
+    description: Variante utilisant une surface pleine.
+  - id: outlined
+    name: Outlined
+    description: Variante principalement définie par une bordure.
+
+states:
+  - id: default
+    name: Default
+    description: Filtre disponible mais non actif.
+  - id: hover
+    name: Hover
+    description: État affiché lorsqu'un pointeur survole le contrôle.
+  - id: focus
+    name: Focus
+    description: État visible lorsque le composant reçoit le focus clavier.
+  - id: active
+    name: Active
+    description: État temporaire pendant l'activation du contrôle.
+  - id: selected
+    name: Selected
+    description: Le filtre est actuellement actif.
+  - id: disabled
+    name: Disabled
+    description: Le filtre est présent mais indisponible.
+
+selection_model:
+  type: multiple
+  min_selection: 0
+  max_selection: null
+interaction_model:
+  trigger: click_or_tap
+  activation: toggle
+  deactivation: toggle
+  immediate_effect: true
+  requires_confirmation: false
+accessibility:
+  semantic_role: toggle_control
+  native_element: button
+  keyboard:
+    - Tab
+    - Enter
+    - Space
+  focus: visible
+  contrast: required
+  target_size: required
+  color_independence: required
+
+relationships:
+  parent: []
+  commonly_confused_with:
+    - badge
+    - tag
+  alternatives_to: []
+  related_patterns: []
+
+visuals:
+  isolated: null
+  description: Rangée de Filter Chips montrant les états default, selected et disabled ainsi que l'anatomie principale.
+
+sources:
+  - name: Material Design — Chips
+    url: TO_VERIFY
+    publisher: Google
+    source_type: design_system
+    usage:
+      - terminology
+      - interaction
+      - behavior
+    license: TO_VERIFY
+    attribution_required: TO_VERIFY
+    last_verified: null
+  - name: WAI-ARIA Authoring Practices — Button Pattern
+    url: TO_VERIFY
+    publisher: W3C
+    source_type: standard
+    usage:
+      - accessibility
+      - interaction
+    license: TO_VERIFY
+    attribution_required: TO_VERIFY
+    last_verified: null
+  - name: WCAG 2.2
+    url: TO_VERIFY
+    publisher: W3C
+    source_type: standard
+    usage:
+      - accessibility
+    license: TO_VERIFY
+    attribution_required: TO_VERIFY
+    last_verified: null
+
+search:
+  keywords:
+    - filter
+    - chip
+    - quick filter
+  natural_language_queries:
+    - petits boutons pour filtrer
+    - boutons arrondis pour filtrer
+    - filtres sous une recherche
+    - petits filtres cliquables
+    - plusieurs boutons pour filtrer une liste
+    - filtres rapides
+    - boutons pour activer plusieurs critères
+    - pastilles pour filtrer
+    - petites bulles de filtre
+    - filtres horizontaux
+  tags:
+    - filtering
+    - selection
+    - search
+    - ecommerce
+    - mobile
+    - interaction
+
+ai:
+  short_prompt: >
+    Utilise des Filter Chips pour exposer les filtres rapides et fréquemment
+    utilisés. Permets une sélection multiple et rends clairement visible l'état
+    actif de chaque filtre.
+  detailed_prompt: >
+    Ajoute une rangée de Filter Chips sous la barre de recherche pour les critères
+    de filtrage les plus fréquemment utilisés. Autorise la sélection multiple et
+    mets à jour les résultats immédiatement après chaque activation ou désactivation.
+    Affiche clairement les états default, hover, focus, active, selected et disabled.
+    Les labels doivent être courts et explicites. L'état selected ne doit pas dépendre
+    uniquement de la couleur : utilise également un indicateur suffisamment clair.
+    Assure une navigation clavier correcte, un focus visible et une zone tactile suffisante.
+
+comparisons:
+  - filter-chip-vs-badge-vs-tag

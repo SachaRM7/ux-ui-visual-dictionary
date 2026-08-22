@@ -1,0 +1,30 @@
+id: filter-chip-vs-badge-vs-tag
+concepts:
+  - filter-chip
+  - badge
+  - tag
+criteria:
+  function:
+    filter-chip: Contrôler un filtre pour modifier immédiatement un ensemble de résultats.
+    badge: Afficher principalement une information, un état ou un compteur.
+    tag: Classifier ou décrire principalement un contenu.
+  interaction:
+    filter-chip: Contrôle interactif activé ou désactivé par clic ou tap.
+    badge: Généralement non interactif ; son éventuelle interaction dépend du contexte.
+    tag: Généralement non interactif ; il peut devenir interactif dans certains contextes éditoriaux.
+  selection:
+    filter-chip: Peut être sélectionné ou désélectionné, avec plusieurs filtres actifs dans le pilote V1.
+    badge: N'exprime pas une sélection utilisateur par défaut.
+    tag: N'exprime pas une sélection utilisateur par défaut ; une sélection éventuelle est contextuelle.
+  role:
+    filter-chip: Contrôle de filtrage visible dans l'interface.
+    badge: Indicateur secondaire d'information, d'état ou de quantité.
+    tag: Marqueur de classification ou de description.
+  context:
+    filter-chip: Près d'une recherche ou d'une liste lorsque les filtres fréquents doivent rester accessibles.
+    badge: À proximité d'un élément dont l'état, le compteur ou l'information secondaire doit être signalé.
+    tag: Associé à un contenu pour rendre sa classification ou sa description immédiatement lisible.
+  use_case:
+    filter-chip: Activer rapidement plusieurs critères comme « En stock » ou « Promotion ».
+    badge: Signaler « Nouveau », « En attente » ou le nombre d'éléments non lus.
+    tag: Indiquer une catégorie, un sujet ou un attribut comme « Design » ou « Sans gluten ».
