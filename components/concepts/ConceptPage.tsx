@@ -265,14 +265,14 @@ export function ConceptPage({ concept, concepts, categories }: ConceptPageProps)
   );
 }
 
-export function ContentValidationState({ error }: { error: ContentValidationError }) {
+export function ContentValidationState({ error, title = "La fiche concept ne peut pas être affichée", description = "Le contenu structuré est invalide." }: { error: ContentValidationError; title?: string; description?: string }) {
   return (
     <main className="concept-page" role="alert">
       <article>
         <header className="concept-header">
           <p className="eyebrow">Erreur de contenu</p>
-          <h1>La fiche concept ne peut pas être affichée</h1>
-          <p>Le contenu structuré est invalide.</p>
+          <h1>{title}</h1>
+          <p>{description}</p>
         </header>
         <ConceptSection title="Détails de validation">
           <ul>

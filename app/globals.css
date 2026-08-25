@@ -292,3 +292,134 @@ a {
     margin-top: 8px;
   }
 }
+
+.comparison-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+.comparison-page article {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #dbe3ee;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgb(15 23 42 / 6%);
+}
+
+.comparison-header,
+.comparison-concepts-section,
+.comparison-criteria-section {
+  padding: 24px;
+}
+
+.comparison-header {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.comparison-header h1,
+.comparison-concepts-section h2,
+.comparison-criteria-section h2,
+.comparison-criterion h2 {
+  margin-top: 0;
+  color: #111827;
+}
+
+.comparison-concepts-section,
+.comparison-criteria-section {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.comparison-criteria-section {
+  border-bottom: 0;
+}
+
+.comparison-concepts,
+.comparison-criteria {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.comparison-concepts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.comparison-concept,
+.comparison-criterion {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.comparison-concept h2,
+.comparison-criterion h2 {
+  font-size: 1.1rem;
+}
+
+.comparison-concept p,
+.comparison-criterion dd {
+  line-height: 1.6;
+}
+
+.comparison-criteria {
+  display: grid;
+  gap: 16px;
+}
+
+.comparison-values {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+}
+
+.comparison-values > div {
+  min-width: 0;
+}
+
+.comparison-values dt {
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.comparison-values dd {
+  margin: 4px 0 0;
+}
+
+@media (max-width: 720px) {
+  .comparison-page {
+    padding: 16px 12px 40px;
+  }
+
+  .comparison-header,
+  .comparison-concepts-section,
+  .comparison-criteria-section {
+    padding: 20px 16px;
+  }
+
+  .comparison-concepts {
+    display: block;
+  }
+
+  .comparison-concept + .comparison-concept {
+    margin-top: 12px;
+  }
+
+  .comparison-values {
+    display: block;
+  }
+
+  .comparison-values > div {
+    padding: 12px 0;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .comparison-values > div:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+}

@@ -31,6 +31,12 @@ export type LoadedConcept = {
   concept: Concept | undefined;
 };
 
+export type LoadedComparison = {
+  categories: CategoryCatalog;
+  concepts: ConceptCatalog;
+  comparison: Comparison | undefined;
+};
+
 const CONTENT_FILE_EXTENSIONS = new Set([".yaml", ".yml"]);
 
 async function readContentFiles(directory_path: string): Promise<ContentFile[]> {
@@ -200,6 +206,19 @@ export async function loadConceptBySlug(
     categories: category_catalog,
     concepts,
     concept: concepts.find((candidate) => candidate.slug === slug)
+  };
+}
+
+export async function loadComparisonById(
+  id: string,
+  root_directory = process.cwd()
+): Promise<LoadedComparison> {
+  const catalog = await loadContentCatalog(root_directory);
+
+  return {
+    categories: catalog.categories,
+    concepts: catalog.concepts,
+    comparison: catalog.comparisons.find((candidate) => candidate.id === id)
   };
 }
 
