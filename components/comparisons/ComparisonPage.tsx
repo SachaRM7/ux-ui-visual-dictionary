@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "next/link";
+import { SliceNavigation } from "@/components/navigation/SliceNavigation";
 import type { Comparison, Concept, ConceptCatalog } from "@/lib/validation/schemas";
 
 const CRITERION_KEYS = [
@@ -29,7 +31,7 @@ export function ConceptComparisonHeader({ concept }: { concept: Concept }) {
   return (
     <li className="comparison-concept">
       <h2>
-        <a href={"/concepts/" + concept.slug}>{concept.canonical_name}</a>
+        <Link href={"/concepts/" + concept.slug}>{concept.canonical_name}</Link>
       </h2>
       <p>{concept.short_definition}</p>
     </li>
@@ -82,7 +84,9 @@ export function ComparisonPage({
     .filter((concept): concept is Concept => concept !== undefined);
 
   return (
-    <main className="comparison-page">
+    <>
+      <SliceNavigation />
+      <main className="comparison-page">
       <article>
         <header className="comparison-header">
           <p className="eyebrow">Comparaison éditoriale</p>
@@ -113,6 +117,7 @@ export function ComparisonPage({
           </ol>
         </section>
       </article>
-    </main>
+      </main>
+    </>
   );
 }

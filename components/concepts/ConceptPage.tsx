@@ -1,14 +1,17 @@
 import React from "react";
 import type { ReactNode } from "react";
-import type { CategoryCatalog, Concept, ConceptCatalog } from "@/lib/validation/schemas";
+import type { CategoryCatalog, Comparison, Concept, ConceptCatalog } from "@/lib/validation/schemas";
 import type { ContentValidationError } from "@/lib/validation/errors";
 import { getCategoryLabels } from "@/lib/content/categories";
 import { CopyablePrompt } from "@/components/concepts/CopyablePrompt";
+import { SliceNavigation } from "@/components/navigation/SliceNavigation";
+import Link from "next/link";
 
 type ConceptPageProps = {
   concept: Concept;
   concepts: ConceptCatalog;
   categories: CategoryCatalog;
+  comparisons?: Comparison[];
 };
 
 type DefinitionListProps = {
@@ -131,6 +134,30 @@ function RelationshipList({ concept, concepts }: Pick<ConceptPageProps, "concept
   return <DefinitionList items={relationships} />;
 }
 
+function comparisonPath(comparison: Comparison): string {
+  return "/compare/" + comparison.concepts.join("-");
+}
+
+function ComparisonList({
+  comparisons,
+  concepts
+}: {
+  comparisons: Comparison[];
+  concepts: ConceptCatalog;
+}) {
+  return (
+    <ul>
+      {comparisons.map((comparison) => (
+        <li key={comparison.id}>
+          <Link href={comparisonPath(comparison)}>
+            {comparison.concepts.map((concept_id) => conceptLabel(concept_id, concepts)).join(" / ")}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function SourceList({ concept }: { concept: Concept }) {
   if (concept.sources.length === 0) {
     return <p className="empty-state">Aucune source renseignée.</p>;
@@ -155,11 +182,13 @@ function SourceList({ concept }: { concept: Concept }) {
   );
 }
 
-export function ConceptPage({ concept, concepts, categories }: ConceptPageProps) {
+export function ConceptPage({ concept, concepts, categories, comparisons = [] }: ConceptPageProps) {
   const labels = getCategoryLabels(concept.category, categories);
 
   return (
-    <main className="concept-page">
+    <>
+      <SliceNavigation />
+      <main className="concept-page">
       <article>
         <header className="concept-header">
           <p className="eyebrow">{concept.status}</p>
@@ -202,6 +231,11 @@ export function ConceptPage({ concept, concepts, categories }: ConceptPageProps)
           <RelationshipList concept={concept} concepts={concepts} />
         </ConceptSection>
 
+        {comparisons.length > 0 ? (
+          <ConceptSection title="Comparaisons">
+            <ComparisonList comparisons={comparisons} concepts={concepts} />
+          </ConceptSection>
+        ) : null}
         {concept.interactive && concept.selection_model ? (
           <ConceptSection title="Modèle de sélection">
             <DefinitionList
@@ -254,12 +288,15 @@ export function ConceptPage({ concept, concepts, categories }: ConceptPageProps)
         </ConceptSection>
       </article>
     </main>
+    </>
   );
 }
 
 export function ContentValidationState({ error, title = "La fiche concept ne peut pas être affichée", description = "Le contenu structuré est invalide." }: { error: ContentValidationError; title?: string; description?: string }) {
   return (
-    <main className="concept-page" role="alert">
+    <>
+      <SliceNavigation />
+      <main className="concept-page" role="alert">
       <article>
         <header className="concept-header">
           <p className="eyebrow">Erreur de contenu</p>
@@ -278,5 +315,6 @@ export function ContentValidationState({ error, title = "La fiche concept ne peu
         </ConceptSection>
       </article>
     </main>
+    </>
   );
 }

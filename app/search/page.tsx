@@ -1,4 +1,6 @@
+import React from "react";
 import Link from "next/link";
+import { SliceNavigation } from "@/components/navigation/SliceNavigation";
 import { getCategoryLabels } from "@/lib/content/categories";
 import { loadContentCatalog } from "@/lib/content/loader";
 import { ContentValidationState } from "@/components/concepts/ConceptPage";
@@ -22,7 +24,9 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     const results = searchConcepts(catalog.concepts, query);
 
     return (
-      <main className="search-page">
+      <>
+        <SliceNavigation />
+        <main className="search-page">
         <section className="search-header">
           <p className="eyebrow">Recherche V1</p>
           <h1>Rechercher un concept</h1>
@@ -74,7 +78,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
             </ol>
           )}
         </section>
-      </main>
+        </main>
+      </>
     );
   } catch (error) {
     if (error instanceof ContentValidationError) {

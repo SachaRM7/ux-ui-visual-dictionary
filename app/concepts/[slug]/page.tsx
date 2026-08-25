@@ -22,6 +22,7 @@ export default async function ConceptRoute({ params }: ConceptRouteProps) {
         concept={loaded.concept}
         concepts={loaded.concepts}
         categories={loaded.categories}
+        comparisons={loaded.comparisons}
       />
     );
   } catch (error) {

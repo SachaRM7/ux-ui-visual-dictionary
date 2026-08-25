@@ -29,6 +29,7 @@ export type LoadedConcept = {
   categories: CategoryCatalog;
   concepts: ConceptCatalog;
   concept: Concept | undefined;
+  comparisons: Comparison[];
 };
 
 export type LoadedComparison = {
@@ -194,21 +195,27 @@ export async function loadConceptCatalog(
   return parseConceptCatalog(directory_path, root_directory, category_catalog);
 }
 
+export function getComparisonsForConcept(
+  concept_id: string,
+  comparisons: Comparison[]
+): Comparison[] {
+  return comparisons.filter((comparison) => comparison.concepts.includes(concept_id));
+}
+
 export async function loadConceptBySlug(
   slug: string,
   root_directory = process.cwd()
 ): Promise<LoadedConcept> {
-  const concepts_directory = path.join(root_directory, "content", "concepts");
-  const category_catalog = await loadCategoryCatalog(path.join(root_directory, "content", "categories.yaml"));
-  const concepts = await parseConceptCatalog(concepts_directory, root_directory, category_catalog);
+  const catalog = await loadContentCatalog(root_directory);
+  const concept = catalog.concepts.find((candidate) => candidate.slug === slug);
 
   return {
-    categories: category_catalog,
-    concepts,
-    concept: concepts.find((candidate) => candidate.slug === slug)
+    categories: catalog.categories,
+    concepts: catalog.concepts,
+    concept,
+    comparisons: concept ? getComparisonsForConcept(concept.id, catalog.comparisons) : []
   };
 }
-
 export async function loadComparisonById(
   id: string,
   root_directory = process.cwd()
