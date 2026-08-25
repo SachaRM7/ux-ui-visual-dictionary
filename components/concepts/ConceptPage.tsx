@@ -1,4 +1,3 @@
-import React from "react";
 import type { ReactNode } from "react";
 import type { CategoryCatalog, Comparison, Concept, ConceptCatalog } from "@/lib/validation/schemas";
 import type { ContentValidationError } from "@/lib/validation/errors";

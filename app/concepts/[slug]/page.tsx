@@ -9,22 +9,10 @@ type ConceptRouteProps = {
 
 export default async function ConceptRoute({ params }: ConceptRouteProps) {
   const { slug } = await params;
+  let loaded: Awaited<ReturnType<typeof loadConceptBySlug>>;
 
   try {
-    const loaded = await loadConceptBySlug(slug);
-
-    if (!loaded.concept) {
-      notFound();
-    }
-
-    return (
-      <ConceptPage
-        concept={loaded.concept}
-        concepts={loaded.concepts}
-        categories={loaded.categories}
-        comparisons={loaded.comparisons}
-      />
-    );
+    loaded = await loadConceptBySlug(slug);
   } catch (error) {
     if (error instanceof ContentValidationError) {
       return <ContentValidationState error={error} />;
@@ -32,4 +20,17 @@ export default async function ConceptRoute({ params }: ConceptRouteProps) {
 
     throw error;
   }
+
+  if (!loaded.concept) {
+    notFound();
+  }
+
+  return (
+    <ConceptPage
+      concept={loaded.concept}
+      concepts={loaded.concepts}
+      categories={loaded.categories}
+      comparisons={loaded.comparisons}
+    />
+  );
 }

@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import { SliceNavigation } from "@/components/navigation/SliceNavigation";
 import { getCategoryLabels } from "@/lib/content/categories";
@@ -18,15 +17,24 @@ function getQueryValue(value: string | string[] | undefined): string {
 export default async function SearchPage({ searchParams }: SearchPageProps) {
   const params = await searchParams;
   const query = getQueryValue(params.q);
+  let catalog: Awaited<ReturnType<typeof loadContentCatalog>>;
 
   try {
-    const catalog = await loadContentCatalog();
-    const results = searchConcepts(catalog.concepts, query);
+    catalog = await loadContentCatalog();
+  } catch (error) {
+    if (error instanceof ContentValidationError) {
+      return <ContentValidationState error={error} />;
+    }
 
-    return (
-      <>
-        <SliceNavigation />
-        <main className="search-page">
+    throw error;
+  }
+
+  const results = searchConcepts(catalog.concepts, query);
+
+  return (
+    <>
+      <SliceNavigation />
+      <main className="search-page">
         <section className="search-header">
           <p className="eyebrow">Recherche V1</p>
           <h1>Rechercher un concept</h1>
@@ -78,14 +86,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
             </ol>
           )}
         </section>
-        </main>
-      </>
-    );
-  } catch (error) {
-    if (error instanceof ContentValidationError) {
-      return <ContentValidationState error={error} />;
-    }
-
-    throw error;
-  }
+      </main>
+    </>
+  );
 }

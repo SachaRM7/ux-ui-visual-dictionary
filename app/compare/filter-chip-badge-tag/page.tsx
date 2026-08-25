@@ -7,14 +7,10 @@ import { ContentValidationError } from "@/lib/validation/errors";
 const V1_COMPARISON_ID = "filter-chip-vs-badge-vs-tag";
 
 export default async function ComparisonRoute() {
+  let loaded: Awaited<ReturnType<typeof loadComparisonById>>;
+
   try {
-    const loaded = await loadComparisonById(V1_COMPARISON_ID);
-
-    if (!loaded.comparison) {
-      notFound();
-    }
-
-    return <ComparisonPage comparison={loaded.comparison} concepts={loaded.concepts} />;
+    loaded = await loadComparisonById(V1_COMPARISON_ID);
   } catch (error) {
     if (error instanceof ContentValidationError) {
       return (
@@ -28,4 +24,10 @@ export default async function ComparisonRoute() {
 
     throw error;
   }
+
+  if (!loaded.comparison) {
+    notFound();
+  }
+
+  return <ComparisonPage comparison={loaded.comparison} concepts={loaded.concepts} />;
 }
