@@ -1,0 +1,190 @@
+:root {
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1f2937;
+  background: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f8fafc;
+}
+
+a {
+  color: #1d4ed8;
+}
+
+.concept-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+.concept-page article {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #dbe3ee;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgb(15 23 42 / 6%);
+}
+
+.concept-header,
+.concept-section {
+  padding: 24px;
+}
+
+.concept-header {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.concept-section + .concept-section {
+  border-top: 1px solid #e5e7eb;
+}
+
+.concept-header h1,
+.concept-section h2,
+.prompt-block h3 {
+  margin-top: 0;
+  color: #111827;
+}
+
+.concept-header h1 {
+  margin-bottom: 8px;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.concept-section h2 {
+  font-size: 1.25rem;
+}
+
+.prompt-block + .prompt-block {
+  margin-top: 20px;
+}
+
+.prompt-block pre {
+  overflow-x: auto;
+  margin: 0;
+  padding: 16px;
+  white-space: pre-wrap;
+  border-radius: 8px;
+  background: #f1f5f9;
+  color: #0f172a;
+  font: inherit;
+  line-height: 1.6;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.category-path,
+.short-definition {
+  margin-bottom: 0;
+}
+
+.short-definition {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.concept-grid > .concept-section + .concept-section {
+  border-top: 0;
+  border-left: 1px solid #e5e7eb;
+}
+
+.concept-page p,
+.concept-page li,
+.definition-list dd {
+  line-height: 1.6;
+}
+
+.concept-page ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.concept-page li + li {
+  margin-top: 10px;
+}
+
+.concept-page li span,
+.source-list li span {
+  display: block;
+}
+
+.definition-list {
+  margin: 0;
+}
+
+.definition-list > div + div {
+  margin-top: 14px;
+}
+
+.definition-list dt {
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.definition-list dd {
+  margin: 2px 0 0;
+}
+
+.source-list {
+  list-style: none;
+  padding-left: 0 !important;
+}
+
+.source-list li {
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.source-list li:first-child {
+  padding-top: 0;
+}
+
+.source-list li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.empty-state {
+  margin: 0;
+  color: #64748b;
+  font-style: italic;
+}
+
+@media (max-width: 640px) {
+  .concept-page {
+    padding: 16px 12px 40px;
+  }
+
+  .concept-header,
+  .concept-section {
+    padding: 20px 16px;
+  }
+
+  .concept-grid {
+    display: block;
+  }
+
+  .concept-grid > .concept-section + .concept-section {
+    border-top: 1px solid #e5e7eb;
+    border-left: 0;
+  }
+}

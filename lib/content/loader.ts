@@ -9,6 +9,7 @@ import {
   type Category,
   type CategoryCatalog,
   type Comparison,
+  type Concept,
   type ConceptCatalog
 } from "@/lib/validation/schemas";
 import { ContentValidationError } from "@/lib/validation/errors";
@@ -22,6 +23,12 @@ export type ContentCatalog = {
   categories: CategoryCatalog;
   concepts: ConceptCatalog;
   comparisons: Comparison[];
+};
+
+export type LoadedConcept = {
+  categories: CategoryCatalog;
+  concepts: ConceptCatalog;
+  concept: Concept | undefined;
 };
 
 const CONTENT_FILE_EXTENSIONS = new Set([".yaml", ".yml"]);
@@ -179,6 +186,21 @@ export async function loadConceptCatalog(
 ): Promise<ConceptCatalog> {
   const category_catalog = await loadCategoryCatalog(path.join(root_directory, "content", "categories.yaml"));
   return parseConceptCatalog(directory_path, root_directory, category_catalog);
+}
+
+export async function loadConceptBySlug(
+  slug: string,
+  root_directory = process.cwd()
+): Promise<LoadedConcept> {
+  const concepts_directory = path.join(root_directory, "content", "concepts");
+  const category_catalog = await loadCategoryCatalog(path.join(root_directory, "content", "categories.yaml"));
+  const concepts = await parseConceptCatalog(concepts_directory, root_directory, category_catalog);
+
+  return {
+    categories: category_catalog,
+    concepts,
+    concept: concepts.find((candidate) => candidate.slug === slug)
+  };
 }
 
 export async function loadComparisons(
