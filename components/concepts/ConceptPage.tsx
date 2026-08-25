@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import type { CategoryCatalog, Concept, ConceptCatalog } from "@/lib/validation/schemas";
 import type { ContentValidationError } from "@/lib/validation/errors";
 import { getCategoryLabels } from "@/lib/content/categories";
+import { CopyablePrompt } from "@/components/concepts/CopyablePrompt";
 
 type ConceptPageProps = {
   concept: Concept;
@@ -154,15 +155,6 @@ function SourceList({ concept }: { concept: Concept }) {
   );
 }
 
-export function PromptBlock({ label, prompt }: { label: string; prompt: string }) {
-  return (
-    <div className="prompt-block">
-      <h3>{label}</h3>
-      <pre>{prompt || "Aucun prompt renseigné."}</pre>
-    </div>
-  );
-}
-
 export function ConceptPage({ concept, concepts, categories }: ConceptPageProps) {
   const labels = getCategoryLabels(concept.category, categories);
 
@@ -257,8 +249,8 @@ export function ConceptPage({ concept, concepts, categories }: ConceptPageProps)
         </ConceptSection>
 
         <ConceptSection title="Prompts IA">
-          <PromptBlock label="Prompt court" prompt={concept.ai.short_prompt} />
-          <PromptBlock label="Prompt détaillé" prompt={concept.ai.detailed_prompt} />
+          <CopyablePrompt label="Prompt court" prompt={concept.ai.short_prompt} />
+          <CopyablePrompt label="Prompt détaillé" prompt={concept.ai.detailed_prompt} />
         </ConceptSection>
       </article>
     </main>

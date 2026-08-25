@@ -76,6 +76,32 @@ a {
   font: inherit;
   line-height: 1.6;
 }
+.prompt-copy-button {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border: 1px solid #1d4ed8;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1d4ed8;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.prompt-copy-button:focus {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+.prompt-copy-button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.prompt-copy-feedback {
+  margin: 10px 0 0;
+  color: #166534;
+}
 
 .eyebrow {
   margin: 0 0 8px;
