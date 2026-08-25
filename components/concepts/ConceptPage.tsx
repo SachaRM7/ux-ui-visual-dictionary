@@ -2,6 +2,7 @@ import React from "react";
 import type { ReactNode } from "react";
 import type { CategoryCatalog, Concept, ConceptCatalog } from "@/lib/validation/schemas";
 import type { ContentValidationError } from "@/lib/validation/errors";
+import { getCategoryLabels } from "@/lib/content/categories";
 
 type ConceptPageProps = {
   concept: Concept;
@@ -23,18 +24,6 @@ function formatValue(value: unknown): string {
   }
 
   return String(value);
-}
-
-function categoryLabels(category: Concept["category"], categories: CategoryCatalog): string[] {
-  const primary = categories.primary.find((candidate) => candidate.id === category.primary);
-  const secondary = primary?.secondary.find((candidate) => candidate.id === category.secondary);
-  const tertiary = secondary?.tertiary.find((candidate) => candidate.id === category.tertiary);
-
-  return [
-    primary?.label ?? category.primary,
-    secondary?.label ?? category.secondary,
-    tertiary?.label ?? category.tertiary
-  ];
 }
 
 function conceptLabel(id: string, concepts: ConceptCatalog): string {
@@ -175,7 +164,7 @@ export function PromptBlock({ label, prompt }: { label: string; prompt: string }
 }
 
 export function ConceptPage({ concept, concepts, categories }: ConceptPageProps) {
-  const labels = categoryLabels(concept.category, categories);
+  const labels = getCategoryLabels(concept.category, categories);
 
   return (
     <main className="concept-page">

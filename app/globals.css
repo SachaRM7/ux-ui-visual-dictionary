@@ -188,3 +188,107 @@ a {
     border-left: 0;
   }
 }
+
+.search-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+.search-header,
+.search-results {
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #dbe3ee;
+  border-radius: 12px;
+}
+
+.search-results {
+  margin-top: 20px;
+}
+
+.search-header h1,
+.search-results h2 {
+  margin-top: 0;
+  color: #111827;
+}
+
+.search-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #475569;
+  font-weight: 700;
+}
+
+.search-form > div {
+  display: flex;
+  gap: 8px;
+}
+
+.search-form input {
+  min-width: 0;
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #94a3b8;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.search-form button {
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 6px;
+  background: #1d4ed8;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.search-form input:focus,
+.search-form button:focus,
+.search-page a:focus {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+.result-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.result-card {
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.result-card h3 {
+  margin: 0 0 8px;
+}
+
+.result-card p {
+  margin: 8px 0 0;
+}
+
+@media (max-width: 640px) {
+  .search-page {
+    padding: 16px 12px 40px;
+  }
+
+  .search-header,
+  .search-results {
+    padding: 20px 16px;
+  }
+
+  .search-form > div {
+    display: block;
+  }
+
+  .search-form button {
+    width: 100%;
+    margin-top: 8px;
+  }
+}
