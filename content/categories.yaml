@@ -2,6 +2,11 @@ primary:
   - id: ui-components
     label: UI Components
     secondary:
+      - id: actions
+        label: Actions
+        tertiary:
+          - id: buttons
+            label: Buttons
       - id: selection-controls
         label: Selection Controls
         tertiary:

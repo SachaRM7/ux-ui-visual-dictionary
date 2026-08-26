@@ -1,0 +1,159 @@
+id: icon-button
+canonical_name: Icon Button
+slug: icon-button
+status: pilot
+interactive: true
+
+aliases: []
+alternative_names: []
+
+category:
+  primary: ui-components
+  secondary: actions
+  tertiary: buttons
+
+short_definition: Button dont l'action est représentée principalement par une icône.
+definition: >
+  Un Icon Button est un Button compact dont le contenu visuel principal est une
+  icône ou un symbole. Comme le texte visible peut manquer, son nom accessible,
+  son contexte et ses états doivent rendre l'action compréhensible.
+purpose: >
+  Donner accès à une action fréquente ou compacte lorsque son symbole est
+  reconnaissable et que l'espace disponible est limité.
+user_goal: >
+  Identifier l'action associée à l'icône et l'activer sans ambiguïté.
+problem_solved: >
+  Réduire l'encombrement d'une interface tout en conservant une action disponible,
+  sans sacrifier son nom accessible ni sa découvrabilité.
+
+use_when:
+  - L'action possède un symbole familier et non ambigu.
+  - L'espace horizontal est limité.
+  - Le contexte fournit une information complémentaire suffisante.
+  - Un nom accessible et, si nécessaire, une aide contextuelle peuvent être fournis.
+avoid_when:
+  - L'icône peut représenter plusieurs actions plausibles.
+  - L'action est critique et le symbole seul risque d'être mal interprété.
+  - Aucun nom accessible ou libellé de secours ne peut être fourni.
+  - La cible tactile deviendrait trop petite pour gagner de la place.
+
+variants:
+  - id: square
+    name: Square
+    description: Icon Button présenté dans une cible carrée cohérente avec le système visuel.
+  - id: circular
+    name: Circular
+    description: Icon Button présenté dans une cible circulaire lorsque le contexte le justifie.
+  - id: with-tooltip
+    name: With Tooltip
+    description: Icon Button complété par une aide au survol ou à la demande, sans remplacer son nom accessible.
+
+states:
+  - id: default
+    name: Default
+    description: Action représentée par l'icône dans son état de repos.
+  - id: hover
+    name: Hover
+    description: État indiquant le survol par un pointeur.
+  - id: focus
+    name: Focus
+    description: État de focus visible autour de la cible interactive.
+  - id: pressed
+    name: Pressed
+    description: État bref indiquant l'activation du contrôle.
+  - id: disabled
+    name: Disabled
+    description: Action indisponible avec une icône qui reste lisible.
+  - id: loading
+    name: Loading
+    description: Action en cours de traitement, avec une indication qui ne repose pas uniquement sur l'icône.
+
+selection_model:
+  type: none
+  min_selection: 0
+  max_selection: 0
+interaction_model:
+  trigger: click_or_tap
+  activation: invoke_action
+  deactivation: not_applicable
+  immediate_effect: true
+  requires_confirmation: false
+accessibility:
+  semantic_role: button
+  native_element: button
+  keyboard:
+    - Tab
+    - Enter
+    - Space
+  focus: visible
+  contrast: required
+  target_size: required
+  color_independence: required
+
+relationships:
+  parent:
+    - button
+  commonly_confused_with: []
+  alternatives_to: []
+  related_patterns: []
+
+visuals:
+  isolated: null
+  description: Visuel pédagogique à produire pour montrer un Icon Button avec son nom accessible et ses états.
+
+sources:
+  - name: Button Pattern
+    url: https://www.w3.org/WAI/ARIA/apg/patterns/button/
+    publisher: W3C
+    source_type: standard
+    usage:
+      - accessibility
+      - interaction
+    license: TO_VERIFY
+    attribution_required: TO_VERIFY
+    last_verified: null
+  - name: Buttons
+    url: https://developer.apple.com/design/human-interface-guidelines/buttons
+    publisher: Apple
+    source_type: official_guideline
+    usage:
+      - accessibility
+      - behavior
+    license: TO_VERIFY
+    attribution_required: TO_VERIFY
+    last_verified: null
+  - name: Button Usage
+    url: https://carbondesignsystem.com/components/button/usage/
+    publisher: IBM Carbon
+    source_type: design_system
+    usage:
+      - terminology
+      - behavior
+      - accessibility
+    license: TO_VERIFY
+    attribution_required: TO_VERIFY
+    last_verified: null
+
+search:
+  keywords:
+    - icon button
+    - icon-only button
+    - symbol action
+  natural_language_queries:
+    - bouton avec seulement une icône
+    - bouton icône sans texte visible
+    - action représentée par une icône
+  tags:
+    - icon-only
+    - compact-action
+    - accessible-label
+
+ai:
+  short_prompt: >
+    Utilise un Icon Button seulement lorsque l'icône rend l'action reconnaissable.
+  detailed_prompt: >
+    Ajoute un Icon Button pour une action compacte et reconnaissable. Fournis un
+    nom accessible explicite, un focus visible, une cible tactile suffisante, des
+    états default, hover, focus, pressed, disabled et loading, ainsi qu'une aide
+    contextuelle si le symbole seul n'est pas assez évident. Ne dépends jamais de
+    l'icône seule pour communiquer une action critique ou ambiguë.

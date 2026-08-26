@@ -1,0 +1,146 @@
+id: primary-button
+canonical_name: Primary Button
+slug: primary-button
+status: pilot
+interactive: true
+
+aliases: []
+alternative_names: []
+
+category:
+  primary: ui-components
+  secondary: actions
+  tertiary: buttons
+
+short_definition: Button à forte emphase visuelle réservé à l'action principale du contexte.
+definition: >
+  Un Primary Button est une variante de Button conçue pour mettre en évidence
+  l'action la plus importante d'une page, d'un formulaire ou d'un composant.
+  Sa prominence guide l'attention mais ne remplace pas un libellé explicite.
+purpose: >
+  Signaler immédiatement l'action prioritaire sans transformer chaque action
+  disponible en appel principal.
+user_goal: >
+  Identifier rapidement l'action recommandée ou attendue dans le contexte courant.
+problem_solved: >
+  Réduire l'ambiguïté lorsque plusieurs actions sont disponibles et qu'une seule
+  doit dominer visuellement.
+
+use_when:
+  - Une seule action est prioritaire dans le contexte visible.
+  - L'utilisateur doit repérer rapidement l'étape principale.
+  - La hiérarchie entre actions doit être immédiatement perceptible.
+  - Le libellé de l'action reste explicite même avec une forte emphase visuelle.
+avoid_when:
+  - Plusieurs actions concurrentes méritent la même prominence.
+  - L'action est destructive sans confirmation ni contexte suffisant.
+  - La priorité visuelle ne correspond pas à la priorité réelle.
+  - La page comporte déjà trop d'éléments visuellement dominants.
+
+variants:
+  - id: with-icon
+    name: With Icon
+    description: Primary Button accompagné d'une icône qui renforce le sens de l'action.
+  - id: full-width
+    name: Full Width
+    description: Primary Button étendu sur la largeur disponible lorsque le contexte le justifie.
+
+states:
+  - id: default
+    name: Default
+    description: Action principale disponible dans son état de repos.
+  - id: hover
+    name: Hover
+    description: État indiquant le survol par un pointeur.
+  - id: focus
+    name: Focus
+    description: État visible lorsque le contrôle reçoit le focus clavier.
+  - id: pressed
+    name: Pressed
+    description: État bref indiquant l'activation du contrôle.
+  - id: disabled
+    name: Disabled
+    description: Action principale indisponible, avec une raison compréhensible si nécessaire.
+  - id: loading
+    name: Loading
+    description: Action principale en cours de traitement.
+
+selection_model:
+  type: none
+  min_selection: 0
+  max_selection: 0
+interaction_model:
+  trigger: click_or_tap
+  activation: invoke_action
+  deactivation: not_applicable
+  immediate_effect: true
+  requires_confirmation: false
+accessibility:
+  semantic_role: button
+  native_element: button
+  keyboard:
+    - Tab
+    - Enter
+    - Space
+  focus: visible
+  contrast: required
+  target_size: required
+  color_independence: required
+
+relationships:
+  parent:
+    - button
+  commonly_confused_with: []
+  alternatives_to: []
+  related_patterns: []
+
+visuals:
+  isolated: null
+  description: Visuel pédagogique à produire pour montrer la hiérarchie d'un Primary Button et ses états.
+
+sources:
+  - name: Button Pattern
+    url: https://www.w3.org/WAI/ARIA/apg/patterns/button/
+    publisher: W3C
+    source_type: standard
+    usage:
+      - accessibility
+      - interaction
+    license: TO_VERIFY
+    attribution_required: TO_VERIFY
+    last_verified: null
+  - name: Button Usage
+    url: https://carbondesignsystem.com/components/button/usage/
+    publisher: IBM Carbon
+    source_type: design_system
+    usage:
+      - terminology
+      - behavior
+      - comparison
+    license: TO_VERIFY
+    attribution_required: TO_VERIFY
+    last_verified: null
+
+search:
+  keywords:
+    - primary button
+    - main action
+    - action hierarchy
+  natural_language_queries:
+    - bouton principal
+    - bouton pour l'action principale
+    - action prioritaire dans une page
+  tags:
+    - button-hierarchy
+    - prominent-action
+    - visual-priority
+
+ai:
+  short_prompt: >
+    Utilise un Primary Button uniquement pour l'action principale du contexte.
+  detailed_prompt: >
+    Utilise un Primary Button pour mettre en évidence une seule action principale.
+    Conserve un libellé explicite, un contraste suffisant, un focus visible et les
+    états default, hover, focus, pressed, disabled et loading. Vérifie que les
+    autres actions disposent d'une emphase visuelle inférieure et que la hiérarchie
+    ne repose pas uniquement sur la couleur.

@@ -1,0 +1,145 @@
+id: secondary-button
+canonical_name: Secondary Button
+slug: secondary-button
+status: pilot
+interactive: true
+
+aliases: []
+alternative_names: []
+
+category:
+  primary: ui-components
+  secondary: actions
+  tertiary: buttons
+
+short_definition: Button à emphase modérée pour une action utile mais non prioritaire.
+definition: >
+  Un Secondary Button est une variante de Button destinée à une action importante
+  dans le contexte mais qui ne doit pas visuellement concurrencer l'action principale.
+  Il soutient la hiérarchie sans disparaître de l'interface.
+purpose: >
+  Donner accès aux actions secondaires tout en conservant une priorité claire
+  entre les différentes possibilités.
+user_goal: >
+  Trouver une action complémentaire sans la confondre avec l'action prioritaire.
+problem_solved: >
+  Éviter que toutes les actions adoptent la même emphase et rendent le choix
+  difficile à comprendre.
+
+use_when:
+  - Une action complémentaire doit rester facilement accessible.
+  - Une action principale existe déjà dans le même contexte.
+  - La hiérarchie doit être visible sans supprimer l'action secondaire.
+  - L'action secondaire possède un libellé compréhensible sans la couleur seule.
+avoid_when:
+  - L'action est en réalité la priorité principale.
+  - L'action est si rare ou contextuelle qu'un lien ou un menu serait plus approprié.
+  - Une faible emphase rend l'action difficile à repérer.
+  - L'interface présente trop de boutons au même niveau.
+
+variants:
+  - id: with-icon
+    name: With Icon
+    description: Secondary Button accompagné d'une icône utile à la compréhension.
+  - id: full-width
+    name: Full Width
+    description: Secondary Button étendu sur la largeur disponible dans un contexte adapté.
+
+states:
+  - id: default
+    name: Default
+    description: Action secondaire disponible dans son état de repos.
+  - id: hover
+    name: Hover
+    description: État indiquant le survol par un pointeur.
+  - id: focus
+    name: Focus
+    description: État visible lorsque le contrôle reçoit le focus clavier.
+  - id: pressed
+    name: Pressed
+    description: État bref indiquant l'activation du contrôle.
+  - id: disabled
+    name: Disabled
+    description: Action secondaire momentanément indisponible.
+  - id: loading
+    name: Loading
+    description: Action secondaire en cours de traitement.
+
+selection_model:
+  type: none
+  min_selection: 0
+  max_selection: 0
+interaction_model:
+  trigger: click_or_tap
+  activation: invoke_action
+  deactivation: not_applicable
+  immediate_effect: true
+  requires_confirmation: false
+accessibility:
+  semantic_role: button
+  native_element: button
+  keyboard:
+    - Tab
+    - Enter
+    - Space
+  focus: visible
+  contrast: required
+  target_size: required
+  color_independence: required
+
+relationships:
+  parent:
+    - button
+  commonly_confused_with: []
+  alternatives_to: []
+  related_patterns: []
+
+visuals:
+  isolated: null
+  description: Visuel pédagogique à produire pour montrer la hiérarchie d'un Secondary Button et ses états.
+
+sources:
+  - name: Button Pattern
+    url: https://www.w3.org/WAI/ARIA/apg/patterns/button/
+    publisher: W3C
+    source_type: standard
+    usage:
+      - accessibility
+      - interaction
+    license: TO_VERIFY
+    attribution_required: TO_VERIFY
+    last_verified: null
+  - name: Button Usage
+    url: https://carbondesignsystem.com/components/button/usage/
+    publisher: IBM Carbon
+    source_type: design_system
+    usage:
+      - terminology
+      - behavior
+      - comparison
+    license: TO_VERIFY
+    attribution_required: TO_VERIFY
+    last_verified: null
+
+search:
+  keywords:
+    - secondary button
+    - supporting action
+    - secondary action
+  natural_language_queries:
+    - bouton secondaire
+    - bouton pour une action complémentaire
+    - action de soutien dans une page
+  tags:
+    - button-hierarchy
+    - supporting-action
+    - moderate-emphasis
+
+ai:
+  short_prompt: >
+    Utilise un Secondary Button pour une action utile mais moins prioritaire.
+  detailed_prompt: >
+    Ajoute un Secondary Button pour une action complémentaire à l'action principale.
+    Donne-lui une emphase visuelle modérée, un libellé explicite, un focus visible,
+    un contraste suffisant et les états default, hover, focus, pressed, disabled et
+    loading. Vérifie qu'il reste identifiable sans concurrencer l'action principale.

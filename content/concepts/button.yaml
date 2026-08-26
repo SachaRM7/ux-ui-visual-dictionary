@@ -1,0 +1,162 @@
+id: button
+canonical_name: Button
+slug: button
+status: pilot
+interactive: true
+
+aliases: []
+alternative_names: []
+
+category:
+  primary: ui-components
+  secondary: actions
+  tertiary: buttons
+
+short_definition: Contrôle interactif qui déclenche une action explicite.
+definition: >
+  Un Button est un contrôle interactif qui permet à une personne de déclencher
+  une action ou un événement clairement identifiable, comme envoyer un formulaire,
+  ouvrir une interface ou confirmer une opération.
+purpose: >
+  Rendre les actions disponibles compréhensibles, activables et hiérarchisées
+  dans le contexte d'une interface.
+user_goal: >
+  Reconnaître l'action possible et la déclencher avec un effort prévisible.
+problem_solved: >
+  Éviter que les actions importantes soient cachées, ambiguës ou confondues avec
+  un simple lien ou un élément informatif.
+
+use_when:
+  - Une action doit être déclenchée explicitement.
+  - Le libellé peut exprimer clairement le résultat de l'activation.
+  - L'action appartient au contexte de la page ou du composant courant.
+  - Une hiérarchie visuelle entre plusieurs actions est nécessaire.
+avoid_when:
+  - L'élément doit uniquement naviguer vers une autre ressource.
+  - Le contrôle sert à sélectionner ou maintenir un état plutôt qu'à déclencher une action.
+  - Le libellé ne permet pas de comprendre le résultat de l'activation.
+  - Trop d'actions concurrentes rendent la hiérarchie illisible.
+
+variants:
+  - id: primary-button
+    name: Primary Button
+    description: Variante réservée à l'action la plus importante du contexte.
+  - id: secondary-button
+    name: Secondary Button
+    description: Variante destinée à une action utile mais moins prioritaire.
+  - id: ghost-button
+    name: Ghost Button
+    description: Variante à faible emphase visuelle, généralement sans surface pleine.
+  - id: icon-only
+    name: Icon-only treatment
+    description: Variante dont l'action est représentée principalement par une icône et doit rester identifiable.
+
+states:
+  - id: default
+    name: Default
+    description: Action disponible dans son état de repos.
+  - id: hover
+    name: Hover
+    description: État indiquant le survol par un pointeur.
+  - id: focus
+    name: Focus
+    description: État visible lorsque le contrôle reçoit le focus clavier.
+  - id: pressed
+    name: Pressed
+    description: État bref indiquant l'activation du contrôle.
+  - id: disabled
+    name: Disabled
+    description: Action momentanément indisponible.
+  - id: loading
+    name: Loading
+    description: Action en cours de traitement, avec prévention des activations concurrentes.
+
+selection_model:
+  type: none
+  min_selection: 0
+  max_selection: 0
+interaction_model:
+  trigger: click_or_tap
+  activation: invoke_action
+  deactivation: not_applicable
+  immediate_effect: true
+  requires_confirmation: false
+accessibility:
+  semantic_role: button
+  native_element: button
+  keyboard:
+    - Tab
+    - Enter
+    - Space
+  focus: visible
+  contrast: required
+  target_size: required
+  color_independence: required
+
+relationships:
+  parent: []
+  commonly_confused_with: []
+  alternatives_to: []
+  related_patterns: []
+
+visuals:
+  isolated: null
+  description: Visuel pédagogique à produire pour montrer la hiérarchie et les états d'un Button.
+
+sources:
+  - name: Button Pattern
+    url: https://www.w3.org/WAI/ARIA/apg/patterns/button/
+    publisher: W3C
+    source_type: standard
+    usage:
+      - accessibility
+      - interaction
+    license: TO_VERIFY
+    attribution_required: TO_VERIFY
+    last_verified: null
+  - name: Buttons
+    url: https://developer.apple.com/design/human-interface-guidelines/buttons
+    publisher: Apple
+    source_type: official_guideline
+    usage:
+      - definition
+      - behavior
+      - accessibility
+    license: TO_VERIFY
+    attribution_required: TO_VERIFY
+    last_verified: null
+  - name: Button Usage
+    url: https://carbondesignsystem.com/components/button/usage/
+    publisher: IBM Carbon
+    source_type: design_system
+    usage:
+      - terminology
+      - behavior
+    license: TO_VERIFY
+    attribution_required: TO_VERIFY
+    last_verified: null
+
+search:
+  keywords:
+    - button
+    - bouton
+    - action
+    - contrôle interactif
+  natural_language_queries:
+    - élément cliquable pour déclencher une action
+    - contrôle pour lancer une action
+    - bouton d'action
+  tags:
+    - ui-components
+    - actions
+    - interaction
+    - control
+
+ai:
+  short_prompt: >
+    Utilise un Button avec un libellé explicite pour déclencher l'action attendue.
+  detailed_prompt: >
+    Ajoute un Button sémantique pour l'action attendue, avec un libellé explicite,
+    une hiérarchie visuelle adaptée au contexte, des états default, hover, focus,
+    pressed, disabled et loading, un focus visible, une taille de cible suffisante
+    et une activation correcte au clavier.

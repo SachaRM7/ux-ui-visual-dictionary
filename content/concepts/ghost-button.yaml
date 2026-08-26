@@ -1,0 +1,145 @@
+id: ghost-button
+canonical_name: Ghost Button
+slug: ghost-button
+status: pilot
+interactive: true
+
+aliases: []
+alternative_names: []
+
+category:
+  primary: ui-components
+  secondary: actions
+  tertiary: buttons
+
+short_definition: Button à faible emphase visuelle, généralement sans surface pleine.
+definition: >
+  Un Ghost Button est une variante de Button dont la surface est peu ou pas
+  remplie au repos, afin de proposer une action secondaire ou contextuelle avec
+  une empreinte visuelle réduite. Sa lisibilité et ses états doivent rester clairs.
+purpose: >
+  Donner accès à une action sans ajouter une surface dominante dans une interface
+  déjà dense ou visuellement hiérarchisée.
+user_goal: >
+  Reconnaître une action disponible même lorsque son traitement visuel est discret.
+problem_solved: >
+  Limiter le bruit visuel des actions secondaires tout en conservant une interaction
+  explicite et accessible.
+
+use_when:
+  - L'action est secondaire ou contextuelle.
+  - L'interface possède déjà une action fortement mise en avant.
+  - Une surface pleine ajouterait une emphase disproportionnée.
+  - Le contraste du texte, du focus et des états reste suffisant.
+avoid_when:
+  - L'action est l'action principale de la page.
+  - Le fond ou le contexte rend la limite du contrôle difficile à percevoir.
+  - La discrétion risque de faire croire que le contrôle est un simple lien ou du texte.
+  - Le contraste ou l'état actif ne peut pas être rendu clairement.
+
+variants:
+  - id: with-icon
+    name: With Icon
+    description: Ghost Button accompagné d'une icône qui clarifie l'action.
+  - id: compact
+    name: Compact
+    description: Ghost Button réduit pour un contexte dense, sans compromettre la cible tactile.
+
+states:
+  - id: default
+    name: Default
+    description: Action discrète disponible dans son état de repos.
+  - id: hover
+    name: Hover
+    description: État ajoutant un retour visuel au survol.
+  - id: focus
+    name: Focus
+    description: État de focus visible indépendamment de la surface du bouton.
+  - id: pressed
+    name: Pressed
+    description: État bref indiquant l'activation du contrôle.
+  - id: disabled
+    name: Disabled
+    description: Action indisponible avec une apparence non ambiguë.
+  - id: loading
+    name: Loading
+    description: Action discrète en cours de traitement.
+
+selection_model:
+  type: none
+  min_selection: 0
+  max_selection: 0
+interaction_model:
+  trigger: click_or_tap
+  activation: invoke_action
+  deactivation: not_applicable
+  immediate_effect: true
+  requires_confirmation: false
+accessibility:
+  semantic_role: button
+  native_element: button
+  keyboard:
+    - Tab
+    - Enter
+    - Space
+  focus: visible
+  contrast: required
+  target_size: required
+  color_independence: required
+
+relationships:
+  parent:
+    - button
+  commonly_confused_with: []
+  alternatives_to: []
+  related_patterns: []
+
+visuals:
+  isolated: null
+  description: Visuel pédagogique à produire pour montrer la faible emphase et les états d'un Ghost Button.
+
+sources:
+  - name: Button Pattern
+    url: https://www.w3.org/WAI/ARIA/apg/patterns/button/
+    publisher: W3C
+    source_type: standard
+    usage:
+      - accessibility
+      - interaction
+    license: TO_VERIFY
+    attribution_required: TO_VERIFY
+    last_verified: null
+  - name: Button Usage
+    url: https://carbondesignsystem.com/components/button/usage/
+    publisher: IBM Carbon
+    source_type: design_system
+    usage:
+      - terminology
+      - behavior
+      - comparison
+    license: TO_VERIFY
+    attribution_required: TO_VERIFY
+    last_verified: null
+
+search:
+  keywords:
+    - ghost button
+    - borderless button
+    - low emphasis action
+  natural_language_queries:
+    - bouton discret sans fond
+    - bouton sans surface pour une action secondaire
+    - action secondaire avec faible emphase visuelle
+  tags:
+    - low-emphasis
+    - borderless-surface
+    - secondary-action
+
+ai:
+  short_prompt: >
+    Utilise un Ghost Button pour une action secondaire à faible emphase visuelle.
+  detailed_prompt: >
+    Ajoute un Ghost Button uniquement pour une action secondaire ou contextuelle.
+    Évite une surface pleine au repos, mais conserve un contraste suffisant, un
+    focus visible, des états hover et pressed lisibles, une cible tactile adéquate
+    et un libellé qui ne dépend pas de la couleur ou de la bordure seule.

@@ -2,6 +2,15 @@ import { z } from "zod";
 
 const KEBAB_CASE_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
+function normalizeConceptTerm(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ");
+}
+
 export const KebabCaseSchema = z
   .string()
   .trim()
@@ -329,7 +338,7 @@ export const ConceptSchema = ConceptSchemaBase.superRefine((concept, context) =>
     }
   }
 
-  if (concept.aliases?.some((alias) => alias.toLocaleLowerCase() === concept.canonical_name.toLocaleLowerCase())) {
+  if (concept.aliases?.some((alias) => normalizeConceptTerm(alias) === normalizeConceptTerm(concept.canonical_name))) {
     context.addIssue({
       code: "custom",
       message: "Un alias ne peut pas être identique au nom canonique.",
@@ -448,6 +457,27 @@ export const ConceptCatalogSchema = z.array(ConceptSchema).superRefine((concepts
   const ids = new Map<string, number>();
   const slugs = new Map<string, number>();
   const known_ids = new Set(concepts.map((concept) => concept.id));
+  const canonical_names = new Map<string, number>();
+  const term_owners = new Map<string, Array<{ concept_index: number; field: string }>>();
+
+  concepts.forEach((concept, index) => {
+    const normalized_canonical_name = normalizeConceptTerm(concept.canonical_name);
+    const previous_canonical_index = canonical_names.get(normalized_canonical_name);
+
+    if (previous_canonical_index !== undefined) {
+      context.addIssue({
+        code: "custom",
+        message: "Le nom canonique entre en collision avec l'élément " + (previous_canonical_index + 1) + ".",
+        path: [index, "canonical_name"]
+      });
+    } else {
+      canonical_names.set(normalized_canonical_name, index);
+    }
+
+    term_owners.set(normalized_canonical_name, [
+      { concept_index: index, field: "canonical_name" }
+    ]);
+  });
 
   concepts.forEach((concept, index) => {
     const previous_id_index = ids.get(concept.id);
@@ -483,6 +513,39 @@ export const ConceptCatalogSchema = z.array(ConceptSchema).superRefine((concepts
         }
       });
     });
+    for (const [field, values] of [
+      ["aliases", concept.aliases],
+      ["alternative_names", concept.alternative_names]
+    ] as const) {
+      values?.forEach((value, value_index) => {
+        const normalized_value = normalizeConceptTerm(value);
+        const canonical_owner = canonical_names.get(normalized_value);
+
+        if (canonical_owner !== undefined && canonical_owner !== index) {
+          context.addIssue({
+            code: "custom",
+            message: "Le terme \"" + value + "\" entre en collision avec le nom canonique de l'élément " + (canonical_owner + 1) + ".",
+            path: [index, field, value_index]
+          });
+        } else {
+          const previous_owner = term_owners
+            .get(normalized_value)
+            ?.find((owner) => owner.concept_index !== index && owner.field !== "canonical_name");
+
+          if (previous_owner) {
+            context.addIssue({
+              code: "custom",
+              message: "Le terme \"" + value + "\" est partagé par plusieurs concepts et nécessite une décision éditoriale explicite.",
+              path: [index, field, value_index]
+            });
+          }
+        }
+
+        const owners = term_owners.get(normalized_value) ?? [];
+        owners.push({ concept_index: index, field });
+        term_owners.set(normalized_value, owners);
+      });
+    }
   });
 });
 

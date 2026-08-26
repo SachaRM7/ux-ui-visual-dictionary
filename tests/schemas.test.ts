@@ -129,6 +129,58 @@ describe("ConceptCatalogSchema", () => {
 
     expect(result.success).toBe(false);
   });
+
+  it("refuse deux noms canoniques identiques après normalisation", () => {
+    const result = ConceptCatalogSchema.safeParse([
+      make_valid_concept(),
+      make_valid_concept({
+        id: "other-concept",
+        canonical_name: " sample   concept ",
+        slug: "other-concept"
+      })
+    ]);
+
+    expect(result.success).toBe(false);
+  });
+
+  it("refuse un alias identique au nom canonique d'un autre concept", () => {
+    const result = ConceptCatalogSchema.safeParse([
+      make_valid_concept({ aliases: ["Other Concept"] }),
+      make_valid_concept({
+        id: "other-concept",
+        canonical_name: "Other Concept",
+        slug: "other-concept"
+      })
+    ]);
+
+    expect(result.success).toBe(false);
+  });
+
+  it("refuse un alias partagé entre plusieurs concepts", () => {
+    const result = ConceptCatalogSchema.safeParse([
+      make_valid_concept({ aliases: ["Shared term"] }),
+      make_valid_concept({
+        id: "other-concept",
+        slug: "other-concept",
+        aliases: [" shared   term "]
+      })
+    ]);
+
+    expect(result.success).toBe(false);
+  });
+
+  it("refuse un nom alternatif identique au nom canonique d'un autre concept", () => {
+    const result = ConceptCatalogSchema.safeParse([
+      make_valid_concept({ alternative_names: ["Other Concept"] }),
+      make_valid_concept({
+        id: "other-concept",
+        canonical_name: "Other Concept",
+        slug: "other-concept"
+      })
+    ]);
+
+    expect(result.success).toBe(false);
+  });
 });
 
 describe("ComparisonSchema", () => {
@@ -193,11 +245,12 @@ ai:
   it("charge et valide le catalogue V1 complet", async () => {
     const catalog = await loadContentCatalog(process.cwd());
 
-    expect(catalog.concepts.map((concept) => concept.id)).toEqual(["badge", "filter-chip", "tag"]);
+    expect(catalog.concepts.map((concept) => concept.id)).toEqual(["badge", "button", "filter-chip", "ghost-button", "icon-button", "primary-button", "secondary-button", "tag"]);
     expect(catalog.concepts.map((concept) => concept.id)).toHaveLength(new Set(catalog.concepts.map((concept) => concept.id)).size);
     expect(catalog.comparisons).toHaveLength(1);
     expect(catalog.comparisons[0]?.concepts).toEqual(["filter-chip", "badge", "tag"]);
     expect(catalog.categories.primary).toHaveLength(1);
+    expect(catalog.categories.primary[0]?.secondary.map((secondary) => secondary.id)).toContain("actions");
   });
 
   it("refuse une relation vers un concept inexistant au chargement", async () => {
