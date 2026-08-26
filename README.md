@@ -1,5 +1,23 @@
 # UI/UX Visual Dictionary
 
+## Production
+
+https://ux-ui-visual-dictionary.vercel.app
+
+Vertical Slice V1 déployé :
+
+```text
+Homepage
+→ Search
+→ Filter Chip
+→ Comparison Filter Chip / Badge / Tag
+→ Static copyable AI prompts
+```
+
+Stack actuelle : Next.js 16.3.2, React 19.2.8, TypeScript, Zod, Vitest et Vercel.
+
+Un push sur main déclenche automatiquement le déploiement de production sur Vercel.
+
 ## Objectif
 
 Créer une encyclopédie visuelle et interactive du UI, de l’UX et du Product Design, capable de transformer une intention vague en vocabulaire précis, en comparaison de patterns et en instruction exploitable par une IA.
@@ -53,6 +71,7 @@ Documents principaux :
 06-ARCHITECTURE-TECHNIQUE.md
 07-ROADMAP.md
 08-FICHE-MODELE-FILTER-CHIP.md
+09-CONTRAT-DONNEES-V1.md
 ```
 
 \---
@@ -105,6 +124,12 @@ Documents principaux :
 
 ```text
 /docs/08-FICHE-MODELE-FILTER-CHIP.md
+```
+
+### Contrat de données V1
+
+```text
+/docs/09-CONTRAT-DONNEES-V1.md
 ```
 
 \---

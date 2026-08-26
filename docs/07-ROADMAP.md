@@ -631,7 +631,11 @@ Après validation du MVP élargi, le produit pourra étudier :
 - recommandations IA ;
 - Prompt Builder ;
 - comptes et collections ;
-- internationalisation.
+- internationalisation ;
+- export Markdown ;
+- export du prompt ;
+- intégration avec Codex comme capacité produit future ;
+- audit automatique d’une interface.
 
 Aucune de ces évolutions ne doit être anticipée au point de compliquer la V1.
 
